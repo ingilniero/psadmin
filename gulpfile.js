@@ -63,10 +63,16 @@ gulp.task('css', function() {
     .pipe(gulp.dest(config.paths.dist + '/css'));
 });
 
-gulp.task('watch', function() {
-  gulp.watch(config.paths.html, ['html']);
-  gulp.watch(config.paths.js, ['js']);
+gulp.task('lint', function() {
+  return gulp.src(config.paths.js)
+    .pipe(eslint({ config: 'eslint.config.json' }))
+    .pipe(eslint.format());
 });
 
-gulp.task('default', ['html', 'css', 'js', 'open', 'watch']);
+gulp.task('watch', function() {
+  gulp.watch(config.paths.html, ['html']);
+  gulp.watch(config.paths.js, ['js', 'lint']);
+});
+
+gulp.task('default', ['html', 'css', 'js', 'lint', 'open', 'watch']);
 
