@@ -9,12 +9,12 @@ var TextInput = React.createClass({
     onChange: React.PropTypes.func.isRequired,
     placeholder: React.PropTypes.string,
     value: React.PropTypes.string,
-    error: React.PropTypes.string,
+    error: React.PropTypes.string
   },
   render: function() {
     var wrapperClass = 'form-group';
     if (this.props.error && this.props.error.length > 0) {
-        wrapperClass += ' ' + 'has-error';
+      wrapperClass += ' ' + 'has-error';
     }
 
     return (
