@@ -12,6 +12,8 @@ var config = {
   devBaseUrl: 'http://localhost',
   paths: {
     html: './src/*.html',
+    js: './src/**/*.js',
+    mainJs: './src/main.js',
     dist: './dist'
   }
 };
@@ -39,9 +41,20 @@ gulp.task('html', function() {
     .pipe(connect.reload());
 });
 
-gulp.task('watch', function() {
-  gulp.watch(config.paths.html, ['html']);
+gulp.task('js', function(){
+  browserify(config.paths.mainJs)
+    .transform(reactify)
+    .bundle()
+    .on('error', console.error.bind(console))
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest(config.paths.dist + '/scripts'))
+    .pipe(connect.reload());
 });
 
-gulp.task('default', ['html', 'open', 'watch']);
+gulp.task('watch', function() {
+  gulp.watch(config.paths.html, ['html']);
+  gulp.watch(config.paths.js, ['js']);
+});
+
+gulp.task('default', ['html', 'js', 'open', 'watch']);
 
