@@ -10,6 +10,7 @@ var Route = Router.Route;
 var App = require('./components/app');
 var HomePage = require('./components/homePage');
 var AuthorsPage = require('./components/authors/authorsPage');
+var CoursesPage = require('./components/courses/coursesPage');
 var AboutPage = require('./components/about/aboutPage');
 var NotFound = require('./components/notFound');
 var ManageAuthorPage = require('./components/authors/manageAuthorPage');
@@ -18,6 +19,7 @@ var routes = (
   <Route name='app' path='/' handler={App}>
     <DefaultRoute handler={HomePage} />
     <Route name='authors' handler={AuthorsPage} />
+    <Route name='courses' handler={CoursesPage} />
     <Route name='addAuthor' path='author' handler={ManageAuthorPage} />
     <Route name='editAuthor' path='author/:id' handler={ManageAuthorPage} />
     <Route name='about' handler={AboutPage} />
