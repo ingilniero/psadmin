@@ -17,6 +17,7 @@ var AuthorForm = React.createClass({
         <form>
           <TextInput
               name='firstName'
+              label='First Name'
               placeholder='First Name'
               value={this.props.author.firstName}
               error={this.props.errors.firstName}
@@ -24,6 +25,7 @@ var AuthorForm = React.createClass({
           />
           <TextInput
               name='lastName'
+              label='Last Name'
               placeholder='Last Name'
               value={this.props.author.lastName}
               error={this.props.errors.lastName}
