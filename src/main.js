@@ -8,4 +8,30 @@ var React = require('react');
 var HomePage = require('./components/homePage');
 var AboutPage = require('./components/about/aboutPage');
 
-React.render(<HomePage />, document.getElementById('app'));
+var App = React.createClass({
+  render: function() {
+    var Child;
+
+    switch (this.props.route) {
+      case 'about':
+        Child = AboutPage;
+        break;
+      default:
+        Child = HomePage;
+    }
+
+    return (
+      <div>
+        <Child/>
+      </div>
+    );
+  }
+});
+
+function render() {
+  var route = window.location.hash.substr(1);
+  React.render(<App route={route} />, document.getElementById('app'));
+}
+
+window.addEventListener('hashchange', render);
+render();
