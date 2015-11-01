@@ -3,11 +3,13 @@
 var React = require('react');
 var Link = require('react-router').Link;
 var CoursesList = require('./coursesList');
+var CourseStore = require('../../stores/courseStore');
+
 
 var CoursesPage = React.createClass({
   getInitialState: function() {
     return {
-      courses: []
+      courses: CourseStore.getAllCourses()
     };
   },
   render: function() {
