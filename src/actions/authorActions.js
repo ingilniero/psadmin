@@ -22,6 +22,15 @@ var AuthorActions = {
       actionType: ActionTypes.UPDATE_AUTHOR,
       author: updatedAuthor
     });
+  },
+  deleteAuthor: function(id) {
+    AuthorAPI.deleteAuthor(id);
+
+    // notify stores an author was deleted.
+    Dispatcher.dispatch({
+      actionType: ActionTypes.DELETE_AUTHOR,
+      id: id
+    });
   }
 };
 

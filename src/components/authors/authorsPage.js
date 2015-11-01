@@ -5,8 +5,6 @@ var Link = require('react-router').Link;
 var AuthorStore = require('../../stores/authorStore');
 var AuthorActions = require('../../actions/authorActions');
 var AuthorsList = require('./authorsList');
-var AuthorStore = require('../../stores/authorStore');
-var AuthorActions = require('../../constants/authorActions');
 
 var AuthorsPage = React.createClass({
   getInitialState: function() {
