@@ -6,5 +6,6 @@
 
 var React = require('react');
 var HomePage = require('./components/homePage');
+var AboutPage = require('./components/about/aboutPage');
 
 React.render(<HomePage />, document.getElementById('app'));
