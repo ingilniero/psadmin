@@ -10,6 +10,13 @@ var ManageAuthorPage = React.createClass({
   mixins: [
     Router.Navigation
   ],
+  statics: {
+    willTransitionFrom: function(transition, component) {
+      if(component.state.dirty && !confirm('Leave without saving?')) {
+        transition.abort();
+      }
+    }
+  },
   getInitialState: function() {
     return {
       author: {
@@ -17,14 +24,18 @@ var ManageAuthorPage = React.createClass({
         firstName: '',
         lastName: ''
       },
-      errors: {}
+      errors: {},
+      dirty: false
     };
   },
   setAuthorState: function(event) {
     var field = event.target.name;
     var value = event.target.value;
     this.state.author[field] = value;
-    return this.setState({ author: this.state.author });
+    return this.setState({
+        author: this.state.author,
+        dirty: true
+     });
   },
   authorFormIsInvalid: function() {
     var formIsValid = true;
@@ -52,6 +63,7 @@ var ManageAuthorPage = React.createClass({
     }
 
     AuthorAPI.saveAuthor(this.state.author);
+    this.setState({ dirty: false });
 
     Toastr.success('Author save correctly.');
     this.transitionTo('authors');
