@@ -24,6 +24,7 @@ var routes = (
     <Route name='addAuthor' path='author' handler={ManageAuthorPage} />
     <Route name='editAuthor' path='author/:id' handler={ManageAuthorPage} />
     <Route name='addCourse' path='course' handler={ManageCoursePage} />
+    <Route name='editCourse' path='course/:id' handler={ManageCoursePage} />
     <Route name='about' handler={AboutPage} />
     <NotFoundRoute handler={NotFound} />
     <Redirect from='about-us' to='about' />

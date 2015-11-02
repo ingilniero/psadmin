@@ -37,6 +37,14 @@ Dispatcher.register(function(action) {
       _courses.push(action.course);
       CourseStore.emitChange();
       break;
+    case ActionTypes.UPDATE_COURSE:
+      var existingCourse = _.find(_courses, { id: action.course.id });
+      var existingCourseIndex = _.indexOf(_courses, existingCourse);
+
+      _courses.splice(existingCourseIndex, 1, action.course);
+
+      CourseStore.emitChange();
+      break;
     default:
       // no op
   }

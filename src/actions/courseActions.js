@@ -12,6 +12,14 @@ var CourseActions = {
       actionType: ActionTypes.CREATE_COURSE,
       course: newCourse
     });
+  },
+  updateCourse: function(course) {
+    var updatedCourse = CourseAPI.saveCourse(course);
+
+    Dispatcher.dispatch({
+      actionType: ActionTypes.UPDATE_COURSE,
+      course: updatedCourse
+    });
   }
 };
 

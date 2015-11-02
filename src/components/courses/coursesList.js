@@ -1,15 +1,16 @@
 "use strict";
 
 var React = require('react');
+var Link = require('react-router').Link;
 
 var CoursesList = React.createClass({
   render: function() {
     var createCourseRow = function(course) {
         return (
           <tr key={course.id}>
-            <td>{course.id}</td>
-            <td>{course.title}</td>
-            <td>{course.author.name}</td>
+            <td><Link to='editCourse' params={ { id: course.id } }>{course.id}</Link></td>
+            <td><Link to='editCourse' params={ { id: course.id } }>{course.title}</Link></td>
+            <td><Link to='editAuthor' params={ { id: course.author.id } }>{course.author.name}</Link></td>
             <td>{course.length}</td>
             <td>{course.category}</td>
           </tr>
