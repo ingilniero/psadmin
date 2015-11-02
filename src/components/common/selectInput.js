@@ -13,7 +13,7 @@ var SelectInput = React.createClass({
   render: function() {
     var createOption = function(option) {
         return (
-          <option key={option.name}>{option.name}</option>
+          <option key={option.firstName}>{option.firstName} {option.lastName}</option>
         );
     };
 
