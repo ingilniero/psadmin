@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+var _ = require('lodash');
 
 var SelectInput = React.createClass({
   propTypes: {
@@ -10,10 +11,18 @@ var SelectInput = React.createClass({
     value: React.PropTypes.string,
     onChange: React.PropTypes.func.isRequired
   },
+  _onChange: function(e) {
+    var option = _.find(this.props.options, { id: e.target.value });
+    var author = {};
+    author.id = option.id;
+    author.name = option.firstName + ' ' + option.lastName;
+
+    this.props.onChange(e, author);
+  },
   render: function() {
     var createOption = function(option) {
         return (
-          <option key={option.firstName}>{option.firstName} {option.lastName}</option>
+          <option key={option.firstName} value={option.id}>{option.firstName} {option.lastName}</option>
         );
     };
 
@@ -21,7 +30,7 @@ var SelectInput = React.createClass({
       <div className='form-group'>
         <label htmlFor={this.props.name}>{this.props.label}</label>
         <div className='field'>
-          <select onChange={this.props.onChange} name={this.props.name} className='form-control' value={this.props.value}>
+          <select onChange={this._onChange} name={this.props.name} className='form-control' value={this.props.value}>
             {this.props.options.map(createOption, this)}
           </select>
         </div>

@@ -18,7 +18,8 @@ var ManageCoursePage = React.createClass({
         id: '',
         title: '',
         author: {
-          name: ''
+          name: '',
+          id: ''
         },
         category: '',
         length: ''
@@ -33,6 +34,7 @@ var ManageCoursePage = React.createClass({
       authors: authors,
       course: {
         author: {
+          id: authors[0].id,
           name: authors[0].firstName + ' ' + authors[0].lastName
         }
       }
@@ -51,17 +53,12 @@ var ManageCoursePage = React.createClass({
     Toastr.success('Course save correctly.');
     this.transitionTo('courses');
   },
-  setCourseState: function(event) {
+  setCourseState: function(event, newValue) {
     var field = event.target.name;
     var value = event.target.value;
-    var author;
 
-    if(field === 'author') {
-      author = {
-        name: value
-      };
-
-      value = author;
+    if(newValue){
+      value = newValue;
     }
 
     this.state.course[field] = value;

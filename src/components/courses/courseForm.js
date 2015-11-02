@@ -30,7 +30,7 @@ var CourseForm = React.createClass({
             name='author'
             label='Author'
             options={this.props.authors}
-            value={this.props.course.author.name}
+            value={this.props.course.author.id}
             onChange={this.props.onChange}
           />
 
